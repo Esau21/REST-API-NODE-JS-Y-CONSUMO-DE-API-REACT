@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function User() {
     const [users, StateUser] = useState([]);
+    const [deleteuser, setDeleteUser] = useState([]);
 
     useEffect(() => {
         obtenerUsers()
@@ -17,6 +18,18 @@ function User() {
             console.log(error);
         }
     }
+
+    const Delete_User = async (id) => {
+        try {
+            const response = await axios.delete(`http://localhost:4000/api/auth/delete/${id}`);
+            if (response.data === 200) {
+                setDeleteUser(deleteuser.filter((user) => user._id !== id))
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
 
     return (
         <div className="container mt-4">
@@ -49,7 +62,9 @@ function User() {
                                         <td>{user.telefono}</td>
                                         <td>
                                             <button className="btn btn-sm btn-outline-success">Editar</button>
-                                            <button className="btn btn-sm btn-outline-danger">Eliminar</button>
+                                            <button className="btn btn-sm btn-outline-danger"
+                                                onClick={() => Delete_User(user._id)}
+                                            >Eliminar</button>
                                         </td>
                                     </tr>
                                 ))}
