@@ -21,10 +21,10 @@ function Editar() {
 
     const navigate = useNavigate();
 
-    const fetchgetUsers = async () => {
+    const fetchgetUsers = async (_id) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/consumo/users`);
-            const user = response.data[0];
+            const response = await axios.get(`http://localhost:4000/api/consumo/dev/${_id}`);
+            const user = response.data;
             setUpdatenewUser(user)
         } catch (error) {
             console.log(error);
@@ -32,10 +32,12 @@ function Editar() {
     }
 
     useEffect(() => {
-        fetchgetUsers();
+        const id = window.location.pathname.split("/")[2]
+        fetchgetUsers(id);
     }, []);
 
-    const HandleSubmitUpdate = async (update) => {
+    const HandleSubmitUpdate = async (event) => {
+        event.preventDefault();
         try {
             const response = await axios.put(`http://localhost:4000/api/auth/update/${update._id}`, update);
             console.log(response.data);

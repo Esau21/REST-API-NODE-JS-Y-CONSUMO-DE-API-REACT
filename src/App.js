@@ -4,6 +4,8 @@ import Editar from './components/Editar';
 import Navbar from './components/Navbar';
 import User from './components/User';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
 
 
 function App() {

@@ -4,5 +4,6 @@ const router = express.Router()
 
 
 router.get('/users', UserController.Getusers);
+router.get('/dev/:id', UserController.GetIdUsers);
 
 module.exports = router;

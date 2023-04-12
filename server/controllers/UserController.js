@@ -11,5 +11,15 @@ const Getusers = (req, res) => {
     });
 }
 
+const GetIdUsers = (req, res) => {
+    User.findById(req.params.id, (err, user) => {
+        if (!err) {
+            res.status(200).json(user)
+        } else {
+            res.status(400).send(err.message);
+        }
+    });
+}
 
-module.exports = {Getusers}
+
+module.exports = {Getusers, GetIdUsers}
